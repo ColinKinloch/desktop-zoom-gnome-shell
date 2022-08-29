@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema id="org.gnome.shell.extensions.colin.kinloch.desktop-zoom" path="/org/gnome/shell/extensions/colin/kinloch/desktop-zoom/">
+    <!-- See also: https://docs.gtk.org/glib/gvariant-format-strings.html -->
+    <key name="mag-factor-delta" type="d">
+      <default>0.05</default>
+      <range min="0.01" max="1.5" />
+    </key>
+    <key name="enable-on-scroll" type="b">
+      <default>false</default>
+    </key>
+  </schema>
+</schemalist>
+

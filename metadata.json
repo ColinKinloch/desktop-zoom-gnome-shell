@@ -1,0 +1,12 @@
+{
+  "uuid": "desktop-zoom@colin.kinlo.ch",
+  "name": "Desktop Zoom",
+  "description": "Desktop zoom",
+  "version": 1,
+  "shell-version": [
+    "41",
+    "42",
+    "43"
+  ], 
+  "url": "https://github.com/ColinKinloch/gnome-shell-desktop-zoom"
+}
