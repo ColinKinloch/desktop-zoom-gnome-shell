@@ -12,7 +12,7 @@ function init() {
 function fillPreferencesWindow(window) {
     // Use the same GSettings schema as in `extension.js`
     const settings = ExtensionUtils.getSettings(
-        'org.gnome.shell.extensions.colin.kinloch.desktop-zoom');
+        'org.gnome.shell.extensions.desktop-zoom');
     
     // Create a preferences page and group
     const page = new Adw.PreferencesPage();

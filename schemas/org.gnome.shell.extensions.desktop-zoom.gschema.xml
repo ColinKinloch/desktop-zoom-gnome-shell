@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
-  <schema id="org.gnome.shell.extensions.colin.kinloch.desktop-zoom" path="/org/gnome/shell/extensions/colin/kinloch/desktop-zoom/">
+  <schema id="org.gnome.shell.extensions.desktop-zoom" path="/org/gnome/shell/extensions/desktop-zoom/">
     <!-- See also: https://docs.gtk.org/glib/gvariant-format-strings.html -->
     <key name="mag-factor-delta" type="d">
       <default>0.05</default>

@@ -71,7 +71,7 @@ class Extension {
   }
 
   enable() {
-    extensionSettings = ExtensionUtils.getSettings('org.gnome.shell.extensions.colin.kinloch.desktop-zoom')
+    extensionSettings = ExtensionUtils.getSettings('org.gnome.shell.extensions.desktop-zoom')
     magnifierSettings = new Gio.Settings({ schema_id: 'org.gnome.desktop.a11y.magnifier' })
     a11ySettings = new Gio.Settings({ schema_id: 'org.gnome.desktop.a11y.applications' })
     mag_factor = magnifierSettings.get_double('mag-factor')
@@ -91,6 +91,10 @@ class Extension {
 
   disable() {
     this.gestureHandler._cleanup();
+    extensionSettings = null;
+    magnifierSettings = null;
+    a11ySettings = null;
+    this.gestureHandler = null;
   }
 }
 

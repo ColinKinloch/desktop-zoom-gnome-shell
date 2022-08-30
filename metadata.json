@@ -4,7 +4,6 @@
   "description": "Desktop zoom",
   "version": 1,
   "shell-version": [
-    "41",
     "42",
     "43"
   ], 
