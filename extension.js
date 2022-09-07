@@ -74,7 +74,12 @@ class Extension {
     extensionSettings = ExtensionUtils.getSettings('org.gnome.shell.extensions.desktop-zoom')
     magnifierSettings = new Gio.Settings({ schema_id: 'org.gnome.desktop.a11y.magnifier' })
     a11ySettings = new Gio.Settings({ schema_id: 'org.gnome.desktop.a11y.applications' })
-    mag_factor = magnifierSettings.get_double('mag-factor')
+    
+    mag_factor = 1.0
+    magnifierSettings.set_double('mag-factor', mag_factor)
+    a11ySettings.set_boolean('screen-magnifier-enabled', false)
+    
+    //mag_factor = magnifierSettings.get_double('mag-factor')
     mag_factor_delta = extensionSettings.get_double('mag-factor-delta')
     enable_on_scroll = extensionSettings.get_boolean('enable-on-scroll')
 
@@ -90,6 +95,10 @@ class Extension {
   }
 
   disable() {
+    mag_factor = 1.0
+    magnifierSettings.set_double('mag-factor', mag_factor)
+    a11ySettings.set_boolean('screen-magnifier-enabled', false)
+    
     this.gestureHandler._cleanup();
     extensionSettings = null;
     magnifierSettings = null;
