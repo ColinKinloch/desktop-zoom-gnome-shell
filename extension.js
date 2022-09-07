@@ -42,11 +42,11 @@ const DesktopZoomGestureAction = new lang.Class({
     if ((event.get_state() & tstate) === tstate) {
       if (!St.Settings.get().magnifier_active) {
         if (enable_on_scroll) {
-          print('seting bool')
+          print('Enabling accessibility magnifier')
+          mag_factor = 1.0
+          magnifierSettings.set_double('mag-factor', mag_factor)
           a11ySettings.set_boolean('screen-magnifier-enabled', true)
-          print('set bool')
         } else {
-          print('dont do')
           return false
         }
       }
