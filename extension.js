@@ -14,7 +14,11 @@ const { lang, signals } = imports;
 const ExtensionUtils = imports.misc.extensionUtils;
 
 const {
-  Gio, GObject, St, Clutter
+  GObject,
+  GLib,
+  Gio,
+  St,
+  Clutter,
 } = imports.gi
 
 let magnifierSettings
@@ -36,10 +40,12 @@ const DesktopZoomGestureAction = new lang.Class({
     this.dragAction = null
     //this.virtualMouse = Clutter.DeviceManager.get_default().create_virtual_device(Clutter.InputDeviceType.POINTER_DEVICE)
     this.grabbedMouse = null
+    this.scrollTimer = GLib.get_monotonic_time()
   },
 
   _handleEvent: function(actor, event) {
-    if ((event.get_state() & tstate) === tstate) {
+    if ((event.get_state() & tstate) === tstate &&
+       event.get_scroll_direction() === Clutter.ScrollDirection.SMOOTH) {
       if (!St.Settings.get().magnifier_active) {
         if (enable_on_scroll) {
           print('Enabling accessibility magnifier')
@@ -50,8 +56,11 @@ const DesktopZoomGestureAction = new lang.Class({
           return false
         }
       }
+      const now = GLib.get_monotonic_time()
+      const dt = now - this.scrollTimer
+      this.scrollTimer = now
       const v = event.get_scroll_delta()[1]
-      mag_factor = Math.max(1.0, mag_factor - v * mag_factor_delta)
+      mag_factor = Math.max(1.0, mag_factor - (v * mag_factor_delta))
       magnifierSettings.set_double('mag-factor', mag_factor)
       
       return true;
