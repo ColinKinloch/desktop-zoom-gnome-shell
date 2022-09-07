@@ -1,7 +1,7 @@
 {
   "uuid": "desktop-zoom@colin.kinlo.ch",
   "name": "Desktop Zoom",
-  "description": "Desktop zoom",
+  "description": "Scroll to zoom gnome desktop.\nHold alt and scroll to zoom.\nCursor must not be over a window (must be over background or top bar).\nMagnifier / zoom must be enabled in accessibility.\nTo disable zoom after removing the extension, disable zoom in gnomes accessibility settings:\nhttps://help.gnome.org/users/gnome-help/stable/a11y-mag.html.en",
   "version": 1,
   "shell-version": [
     "42",
