@@ -45,23 +45,31 @@ const DesktopZoomGestureAction = new lang.Class({
 
   _handleEvent: function(actor, event) {
     if ((event.get_state() & tstate) === tstate &&
-       event.get_scroll_direction() === Clutter.ScrollDirection.SMOOTH) {
-      if (!St.Settings.get().magnifier_active) {
-        if (enable_on_scroll) {
-          print('Enabling accessibility magnifier')
-          mag_factor = 1.0
-          magnifierSettings.set_double('mag-factor', mag_factor)
-          a11ySettings.set_boolean('screen-magnifier-enabled', true)
-        } else {
-          return false
-        }
-      }
+      event.get_scroll_direction() === Clutter.ScrollDirection.SMOOTH) {
+      
+      mag_factor = magnifierSettings.get_double('mag-factor')
       const now = GLib.get_monotonic_time()
       const dt = now - this.scrollTimer
       this.scrollTimer = now
       const v = event.get_scroll_delta()[1]
       mag_factor = Math.max(1.0, mag_factor - (v * mag_factor_delta))
-      magnifierSettings.set_double('mag-factor', mag_factor)
+      
+      print(mag_factor)
+      if (enable_on_scroll) {
+        magnifierSettings.set_double('mag-factor', mag_factor)
+        if (mag_factor <= 1.005) {
+          print('Disabling accessibility magnifier')
+          a11ySettings.set_boolean('screen-magnifier-enabled', false)
+        } else if (!St.Settings.get().magnifier_active) {
+          print('Enabling accessibility magnifier')
+          //mag_factor = 1.0
+          a11ySettings.set_boolean('screen-magnifier-enabled', true)
+        }
+      } else if (St.Settings.get().magnifier_active) {
+        magnifierSettings.set_double('mag-factor', mag_factor)
+      } else {
+        return false
+      }
       
       return true;
     }

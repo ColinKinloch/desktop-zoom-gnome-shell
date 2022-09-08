@@ -7,7 +7,7 @@
       <range min="0.01" max="1.5" />
     </key>
     <key name="enable-on-scroll" type="b">
-      <default>false</default>
+      <default>true</default>
     </key>
   </schema>
 </schemalist>
